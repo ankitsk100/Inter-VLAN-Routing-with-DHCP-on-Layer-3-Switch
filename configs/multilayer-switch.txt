@@ -1,0 +1,58 @@
+enable
+configure terminal
+
+vlan 10
+ name IT
+vlan 20
+ name SALES
+vlan 30
+ name HR
+exit
+
+interface range gig1/0/1-3
+ switchport mode trunk
+exit
+
+ip routing
+
+interface vlan 10
+ ip address 192.168.1.1 255.255.255.0
+ no shutdown
+exit
+
+interface vlan 20
+ ip address 192.168.2.1 255.255.255.0
+ no shutdown
+exit
+
+interface vlan 30
+ ip address 192.168.3.1 255.255.255.0
+ no shutdown
+exit
+
+service dhcp
+
+ip dhcp excluded-address 192.168.1.1 192.168.1.10
+ip dhcp excluded-address 192.168.2.1 192.168.2.10
+ip dhcp excluded-address 192.168.3.1 192.168.3.10
+
+ip dhcp pool IT-POOL
+ network 192.168.1.0 255.255.255.0
+ default-router 192.168.1.1
+ dns-server 192.168.1.1
+exit
+
+ip dhcp pool SALES-POOL
+ network 192.168.2.0 255.255.255.0
+ default-router 192.168.2.1
+ dns-server 192.168.2.1
+exit
+
+ip dhcp pool HR-POOL
+ network 192.168.3.0 255.255.255.0
+ default-router 192.168.3.1
+ dns-server 192.168.3.1
+exit
+
+end
+write memory
