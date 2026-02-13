@@ -5,6 +5,8 @@
 This project demonstrates Inter-VLAN Routing using a Layer 3 Switch (3560) 
 with DHCP service configured on the multilayer switch.
 
+![Topology](docs/topology.png)
+
 The network is divided into three departments:
 
 - VLAN 10 – IT Department
